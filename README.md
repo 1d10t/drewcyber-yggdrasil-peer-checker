@@ -14,7 +14,12 @@ go build
 ./peer_checker ../public-peers
 ```
 
-or export first 10 fastest alive peers in JSON format
+or export URIs only in JSON format
 ```
-go run . --json ~/public-peers/  | jq '.alive[:10] | map(.uri)'
+# first 10 fastest alive peers
+... | jq '.alive[:10] | map(.uri)'
+
+# first 10 fastest alive peers for Euerope
+... | jq '.alive | map(select(.region == "europe")) | [:5] | map(.uri)'
 ```
+
