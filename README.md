@@ -19,7 +19,18 @@ or export URIs only in JSON format
 # first 10 fastest alive peers
 ... | jq '.alive[:10] | map(.uri)'
 
-# first 5 fastest alive peers for Euerope
+# first 5 fastest alive peers for Europe
 ... | jq '.alive | map(select(.region == "europe")) | [:5] | map(.uri)'
+
+# combined
+... | \
+jq '.alive as $p | 
+    (
+      $p[:5] + 
+      ($p | map(select(.region == "europe"))[:5]) + 
+      ($p | map(select(.country == "russia.md"))[:5])
+    ) 
+    | map(.uri) 
+    | unique'
 ```
 
