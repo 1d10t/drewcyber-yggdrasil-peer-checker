@@ -20,7 +20,7 @@ or export URIs only in JSON format
 ... | jq '.alive[:10] | map(.uri)'
 
 # first 5 fastest alive peers for Europe
-... | jq '.alive | map(select(.region == "europe")) | [:5] | map(.uri)'
+... | jq '.alive | map(select(.region == "europe"))[:5] | map(.uri)'
 
 # combined
 ... | \
