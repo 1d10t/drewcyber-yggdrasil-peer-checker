@@ -17,13 +17,13 @@ go build
 or export URIs only in JSON format
 ```
 # first 10 fastest alive peers
-... | jq '.alive[:10] | map(.uri)'
+go run . --json ~/public-peers/ | jq '.alive[:10] | map(.uri)'
 
 # first 5 fastest alive peers for Europe
-... | jq '.alive | map(select(.region == "europe"))[:5] | map(.uri)'
+go run . --json ~/public-peers/ | jq '.alive | map(select(.region == "europe"))[:5] | map(.uri)'
 
 # combined
-... | \
+go run . --json ~/public-peers/ | \
 jq '.alive as $p | 
     (
       $p[:5] + 
