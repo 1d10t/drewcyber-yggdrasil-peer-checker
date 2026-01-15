@@ -13,3 +13,8 @@ or
 go build
 ./peer_checker ../public-peers
 ```
+
+or export first 10 fastest alive peers in JSON format
+```
+go run . --json ~/public-peers/  | jq '.alive[:10] | map(.uri)'
+```
